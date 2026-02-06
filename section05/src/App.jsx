@@ -7,11 +7,13 @@ import "./App.css";
 // import Bulb from "./components/Bulb";
 // import Count from "./components/Count";
 import Register from "./components/Register";
+import HookExam from "./components/HookExam";
 
 function App() {
   return (
-    <>    
-    <Register />
+    <>
+    <HookExam />    
+    {/* <Register /> */}
       {/* <Bulb />
       <Count /> */}
     </>
