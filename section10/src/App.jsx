@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import Editor from './components/Editor';
 import List from './components/List';
-import { useState, useRef, useReducer, useCallback } from 'react';
+import { useState, useRef, useReducer, useCallback, createContext } from 'react';
 import Exam from './components/Exam';
 
 const mokDate = [
@@ -36,6 +36,8 @@ function reducer(state, action) {
       return state.filter((item) => item.id !== action.targetId);      
   }
 }
+
+export const TodoContext = createContext();
 
 function App() {
   const [ todos, dispatch ] = useReducer(reducer, mokDate);
@@ -78,8 +80,11 @@ function App() {
     <div className='App'>
       {/* <Exam /> */}
       <Header />
-      <Editor onCreate={ onCreate } />
-      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />    
+      <TodoContext.Provider value={{todos,onCreate, onUpdate, onDelete}}>
+        <Editor onCreate={ onCreate } />
+        {/* <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} /> */}
+        <List />
+      </TodoContext.Provider>
     </div>
   )
 }
