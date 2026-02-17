@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import Editor from './components/Editor';
 import List from './components/List';
-import { useState, useRef, useReducer, useCallback, createContext } from 'react';
+import { useState, useRef, useReducer, useCallback, createContext, useMemo } from 'react';
 import Exam from './components/Exam';
 
 const mokDate = [
@@ -37,7 +37,8 @@ function reducer(state, action) {
   }
 }
 
-export const TodoContext = createContext();
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 
 function App() {
   const [ todos, dispatch ] = useReducer(reducer, mokDate);
@@ -76,17 +77,26 @@ function App() {
     })
   }, []);
 
+  const memorizedDispatch = useMemo(() => {
+    return {
+      onCreate,
+      onUpdate,
+      onDelete
+    }
+  },[]);
+
   return (
     <div className='App'>
       {/* <Exam /> */}
       <Header />
-      <TodoContext.Provider value={{todos,onCreate, onUpdate, onDelete}}>
-        <Editor onCreate={ onCreate } />
-        {/* <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} /> */}
-        <List />
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todos}>
+        <TodoDispatchContext.Provider value={memorizedDispatch}>
+          <Editor />
+          <List />
+        </TodoDispatchContext.Provider>        
+      </TodoStateContext.Provider>
     </div>
   )
 }
 
-export default App
+export default App;
