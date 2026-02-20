@@ -102,7 +102,7 @@ function App() {
         <img src={getEmotionImage(4)} />
         <img src={getEmotionImage(5)} />
       </div> */}
-      <Header 
+      {/* <Header 
         title={"Header"}
         leftChild={<Button text={"Left"} />}
         rightChild={<Button text={"Right"} />}
@@ -127,14 +127,14 @@ function App() {
         onClick={() => {
           console.log("123번 버튼 클릭!");
         }} 
-      />
+      /> */}
       {/* <div>
         <Link to={"/"}>Home</Link>
         <Link to={"/new"}>New</Link>
         <Link to={"/diary"}>Diary</Link>
       </div>
       <button onClick={onClickButton}>New page로 이동</button> */}
-      <button onClick={() => {
+      {/* <button onClick={() => {
         onDelete(1)
       }}>삭제</button>
       <button onClick={() => {
@@ -143,7 +143,7 @@ function App() {
       }>수정</button>
       <button onClick={() => {
         onCreate(new Date().getTime(), idRef, "tt 내용");
-      }}>등록</button>
+      }}>등록</button> */}
       <DiaryStateContext.Provider value={data}>
         <DiaryDispatchContext.Provider value={{
           onCreate,
