@@ -86,16 +86,17 @@ const Editor = ({ onSubmit }) => {
                 <div className="emotion_list_wrapper">
                     {emotionList.map((item)=>
                         <EmotionItem 
-                        onClick={() => 
-                            onChangeInput({
-                                target: {
-                                    name: "emotionId",
-                                    value: item.emotionId,
-                                }
-                            })
-                        }
-                        key={item.emotionId} {...item} 
-                        isSelected={item.emotionId === input.emotionId} />)
+                            onClick={() => 
+                                onChangeInput({
+                                    target: {
+                                        name: "emotionId",
+                                        value: item.emotionId,
+                                    }
+                                })
+                            }
+                            key={item.emotionId} {...item} 
+                            isSelected={item.emotionId === input.emotionId} 
+                        />)
                     }
                 </div>
             </section>
